@@ -13,7 +13,7 @@ export function AccordionCourse({ data, mat }: { data: any; mat: any }) {
         {data
           ? data.map((e: { name: string; id: number }, index: number) => {
               return (
-                <AccordionItem className="border-border" value={"item" + index}>
+                <AccordionItem className="border-border" key={index} value={"item" + index}>
                   <AccordionTrigger>{e.name}</AccordionTrigger>
                   {mat ? mat.map(
                     (
@@ -22,7 +22,7 @@ export function AccordionCourse({ data, mat }: { data: any; mat: any }) {
                     ) => {
                       if (ee.lesson_id === e.id) {
                         return (
-                          <AccordionContent>{ee.post_content}</AccordionContent>
+                          <AccordionContent key={index}>{ee.post_content}</AccordionContent>
                         );
                       }
                     }

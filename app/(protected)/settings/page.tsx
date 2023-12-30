@@ -41,22 +41,8 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
-type Course = {
-  id: number;
-  name: string;
-  scorm_filename: string;
-  thumbnail: string;
-  description: string;
-  course_type_id: number;
-  created_at: Date;
-  updated_at: Date;
-  map: any;
-};
-export default function Index({
-  corsesResponse,
-}: {
-  corsesResponse: Course;
-}) {
+
+export default function Index() {
 
   return (
     <>

@@ -9,6 +9,6 @@ export const initializeTheme = () => {
     }
 };
 
-export const toggleTheme = (theme) => {
+export const toggleTheme = (theme: string) => {
     localStorage.setItem('theme', theme);
 };

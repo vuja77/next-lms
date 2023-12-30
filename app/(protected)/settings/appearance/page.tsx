@@ -39,27 +39,13 @@ import RootLayout from "../layout";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toggleTheme, initializeTheme } from "@/lib/theme";
-type Course = {
-  id: number;
-  name: string;
-  scorm_filename: string;
-  thumbnail: string;
-  description: string;
-  course_type_id: number;
-  created_at: Date;
-  updated_at: Date;
-  map: any;
-};
+
 const FormSchema = z.object({
   theme: z.string().min(0, {
     message: "Username must be at least 6 characters.",
   }),
 });
-export default function Appearance({
-  corsesResponse,
-}: {
-  corsesResponse: Course;
-}) {
+export default function Appearance() {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const router = useRouter();
 
@@ -109,7 +95,7 @@ export default function Appearance({
                           <RadioGroupItem
                             value="dark"
                             id="option-two"
-                            image="dark.png"
+                            itemProp="dark.png"
                           />
                           <Label htmlFor="option-one" className="mt-2">Dark Theme</Label>
                         </div>
@@ -117,7 +103,7 @@ export default function Appearance({
                           <RadioGroupItem
                             value="light"
                             id="option-two"
-                            image="light.png"
+                            itemProp="light.png"
                           />
                           <Label htmlFor="option-two"className="mt-2">Light Theme</Label>
                         </div>

@@ -64,7 +64,7 @@ export default function SideBar() {
       <div className="hidden flex flex-col gap-5 w-[200px] border-r file:border-0 border-r-border p-5 h-screen relative top-0 self-start md:hidden lg:flex">
         {settingsPages.map((e, index) => {
           return (
-            <Link href={"/settings/" + e.name} className="min-w-full">
+            <Link key={index} href={"/settings/" + e.name} className="min-w-full">
               <Button
                 className="min-w-full"
                 variant={lastSegment === e.name ? "default" : "sideBar"}

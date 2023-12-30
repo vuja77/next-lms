@@ -54,7 +54,7 @@ type Course = {
 export default function Dashboard() {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const router = useRouter();
-  const [corsesRespons, setcorsesRespons] = useState<Map<string, number>>();
+  const [corsesRespons, setcorsesRespons] = useState<any>();
 
   const Fetch = async () => {
     const Courses = await axios.get(Config.apiUrl + "/course");
@@ -121,7 +121,7 @@ export default function Dashboard() {
             {corsesRespons
               ? corsesRespons.map((e: Course, index: number) => {
                   return (
-                    <Link href={"/course/" + e.id}>
+                    <Link key={index}href={"/course/" + e.id}>
                       <div
                         key={index}
                         className="shadow flex flex-col bg-card rounded-xl border border-border hover:pointer-events-auto hover:scale-105 ease-in-out duration-300"
