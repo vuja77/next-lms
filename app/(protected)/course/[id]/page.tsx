@@ -75,7 +75,7 @@ const CoursePage = ({ params }: { params: { id: string } }) => {
               <span className="bg-secondary rounded-sm w-[60px] text-center p-1 font-medium">
                 {course ? course[0].course_type : null}
               </span>
-              <Link href="https://lms-next.work.gd/ets-site-backend/storage/app/public/courses/17039733806/vibrant%20orange-green/vibrant-green-scorm-1-2-1703761476/">
+              <Link href="/scormcourse/index.html?scorm_filename=170397394755">
                 <Button variant="Login">Start course</Button>
               </Link>
             </div>
