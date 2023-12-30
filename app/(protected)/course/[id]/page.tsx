@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Config } from "@/Config";
 import { useEffect, useState } from "react";
 const CoursePage = ({ params }: { params: { id: string } }) => {
   type Course = {
@@ -30,17 +31,17 @@ const CoursePage = ({ params }: { params: { id: string } }) => {
   const [home, sethome] = useState();
   const Fetch = async () => {
     await axios
-      .get(`http://127.0.0.1:8000/api/course/${params.id}`)
+      .get(Config.apiUrl + `/course/${params.id}`)
       .then((res) => setCourse(res.data));
     await axios
-      .get(`http://127.0.0.1:8000/api/getlesson/${params.id}`)
+      .get(Config.apiUrl + `/getlesson/${params.id}`)
       .then((res) => setlesson(res.data));
     await axios
-      .get(`http://127.0.0.1:8000/api/gethomework/${params.id}`)
+      .get(Config.apiUrl + `/gethomework/${params.id}`)
       .then((res) => sethome(res.data));
 
     await axios
-      .get(`http://127.0.0.1:8000/api/getMaterial/${params.id}`)
+      .get(Config.apiUrl + `/getMaterial/${params.id}`)
       .then((res) => setmat(res.data));
   };
   useEffect(() => {
