@@ -57,7 +57,6 @@ const CoursePage = ({ params }: { params: { id: string } }) => {
             {course ? (
               <Image
                 src={
-                  "https://lms-next.work.gd/ets-site-backend/public/uploads/" +
                   course[0].thumbnail
                 }
                 alt=""
