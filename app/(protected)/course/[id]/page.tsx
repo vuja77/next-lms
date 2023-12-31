@@ -15,7 +15,7 @@ const CoursePage = ({ params }: { params: { id: string } }) => {
   type Course = {
     id: number;
     name: string;
-    scorm_filename: string;
+    scorm_filename: string | undefined;
     thumbnail: string;
     description: string;
     course_type_id: number;
@@ -73,11 +73,18 @@ const CoursePage = ({ params }: { params: { id: string } }) => {
                 {course ? course[0].first_name : null + " "}
               </p>
               <span className="bg-secondary rounded-sm w-[60px] text-center p-1 font-medium">
-                {course ? course[0].course_type : null}
+                {course ? course[0].scorm_filename : null}
               </span>
-              <Link href="/scormcourse/index.html?scorm_filename=170397394755">
-                <Button variant="Login">Start course</Button>
-              </Link>
+              {course ? (
+                <Link
+                  href={
+                    "/scormcourse/index.html?scorm_filename=" +
+                    course[0].scorm_filename
+                  }
+                >
+                  <Button variant="Login">Start course</Button>
+                </Link>
+              ) : null}
             </div>
           </Card>
           <Tabs defaultValue="lesson">
