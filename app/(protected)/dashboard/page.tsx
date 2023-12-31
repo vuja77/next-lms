@@ -65,6 +65,7 @@ export default function Dashboard() {
       router.push("/Login");
     }
     Fetch();
+    initializeTheme()
   }, []);
 
   return (

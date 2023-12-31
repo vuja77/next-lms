@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Config } from "@/Config";
 import { useEffect, useState } from "react";
+import { initializeTheme } from "@/lib/theme";
 const CoursePage = ({ params }: { params: { id: string } }) => {
   type Course = {
     id: number;
@@ -46,6 +47,7 @@ const CoursePage = ({ params }: { params: { id: string } }) => {
   };
   useEffect(() => {
     Fetch();
+    initializeTheme()
   }, []);
   return (
     <div className="bg-background min-h-screen">
@@ -60,7 +62,7 @@ const CoursePage = ({ params }: { params: { id: string } }) => {
                 alt=""
                 width={280}
                 height={400}
-                className="rounded-sm w-full w-[70%] max-sm:w-full"
+                className="rounded-sm w-full max-w-[70%] max-sm:w-full"
               ></img>
             ) : null}
             <div className="flex flex-col p-5 gap-5">

@@ -13,11 +13,14 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import "../../../app/globals.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Config } from "../../../Config";
+import { initializeTheme } from "@/lib/theme";
 export default function register() {
-
+  useEffect(() => {
+    initializeTheme()
+  })
   return (
       <div className="flex items-center h-screen justify-center p-24 flex-col ">
         <Card className="min-w-[400px] max-h-[420px]">

@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
 import "../../../app/globals.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Config } from "../../../Config";
 import { setCookie, hasCookie } from "cookies-next";
@@ -30,6 +30,7 @@ const FormSchema = z.object({
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import RootLayout from "@/app/layout";
+import { initializeTheme } from "@/lib/theme";
 
 export default function Login() {
   const router = useRouter();
@@ -65,6 +66,9 @@ export default function Login() {
       }
     }
   };
+  useEffect(() => {
+    initializeTheme()
+  })
   return (
     <div className="flex min-h-screen items-center justify-center p-24 flex-col">
       <div className="p-10 rounded-lg gap-5 flex-col flex  w-[400px] border file:border-0 border-border">
