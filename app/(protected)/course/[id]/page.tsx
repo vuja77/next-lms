@@ -77,7 +77,7 @@ const CoursePage = ({ params }: { params: { id: string } }) => {
                 {course ? course[0].first_name : null + " "}
               </p>
               <span className="bg-secondary rounded-sm w-[60px] text-center p-1 font-medium">
-                {course ? course[0].scorm_filename : null}
+                {course ? course[0].course_type : null}
               </span>
               {course ? (
                 <Link
