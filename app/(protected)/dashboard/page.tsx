@@ -121,18 +121,22 @@ export default function Dashboard() {
             {corsesRespons
               ? corsesRespons.map((e: Course, index: number) => {
                   return (
-                    <Link key={index}href={"/course/" + e.id}>
+                    <Link key={index} href={"/course/" + e.id}>
                       <div
                         key={index}
                         className="shadow flex flex-col bg-card rounded-xl border border-border hover:pointer-events-auto hover:scale-105 ease-in-out duration-300"
                       >
-                        <Image
-                          src={require("../../assets/6566ef9250c24422ac733e11.jpg")}
+                        <img
+                          src={
+                            "https://lms-next.work.gd/ets-site-backend/public/uploads/" +
+                            e.thumbnail
+                          }
                           alt=""
                           width={280}
                           height={400}
-                          className="rounded-t-xl w-full"
-                        ></Image>
+                          className="rounded-sm w-full w-[70%] max-sm:w-full"
+                        ></img>
+
                         <div className="p-2">
                           <p className="text-md font-bold">{e.name}</p>
                         </div>

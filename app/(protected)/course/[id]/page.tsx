@@ -55,15 +55,13 @@ const CoursePage = ({ params }: { params: { id: string } }) => {
         <div className="grid grid-rows-2 gap-10 max-w-[60%] pt-10 max-md:max-w-[100%] p-5 max-lg:max-w-[90%] min-w-[50%]">
           <Card className="bg-background flex-row flex max-sm:flex-col ">
             {course ? (
-              <Image
-                src={
-                  course[0].thumbnail
-                }
+              <img
+                src={"https://lms-next.work.gd/ets-site-backend/public/uploads/"+course[0].thumbnail}
                 alt=""
                 width={280}
                 height={400}
                 className="rounded-sm w-full w-[70%] max-sm:w-full"
-              ></Image>
+              ></img>
             ) : null}
             <div className="flex flex-col p-5 gap-5">
               <h1 className="font-bold text-xl">
