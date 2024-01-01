@@ -19,7 +19,9 @@ import { useToast } from "@/components/ui/use-toast";
 import "../../app/globals.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { Config } from "../../Config";
+import SideBar from "../sideBar";
+import Header from "../header";
 import Chart from "@/components/chart";
 import { Calendar } from "@/components/ui/calendar";
 import { Separator } from "@/components/ui/separator";
@@ -35,13 +37,12 @@ import {
 import { hasCookie } from "cookies-next";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import RootLayout from "./layout";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 
-export default function Appearance() {
+export default function ProfileSettings() {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const router = useRouter();
 
@@ -54,6 +55,12 @@ export default function Appearance() {
     mail: z.string().min(2, {
       message: "Username must be at least 6 characters.",
     }),
+    first_name: z.string().min(2, {
+      message: "Username must be at least 6 characters.",
+    }),
+    last_name: z.string().min(2, {
+      message: "Username must be at least 6 characters.",
+    }),
     password: z.string().min(2, {
       message: "Password must be at least 6 characters.",
     }),
@@ -63,14 +70,14 @@ export default function Appearance() {
     defaultValues: {
       mail: "",
       password: "",
+      first_name: "",
+      last_name: "",
     },
   });
   return (
-      <div className="flex flex-col min-h-screen gap-2">
-        <h1 className="text-2xl font-bold">Profile</h1>
+      <div className="flex flex-col gap-2">
         <p>This is how others will see you on the site.</p>
-        <Separator></Separator>
-        <div className="min-w-[600px] self-center">
+        <div className="min-w-[100%] self-center">
           <Card className="p-3 flex flex-row items-center gap-5">
             <Avatar className="w-[80px] h-[80px]">
               <AvatarImage
@@ -84,13 +91,13 @@ export default function Appearance() {
             <div className="flex flex-row justify-between gap-5">
               <FormField
                 control={form.control}
-                name="mail"
+                name="first_name"
                 render={({ field }) => (
                   <FormItem                 className="w-full"
                   >
-                    <FormLabel>mail</FormLabel>
+                    <FormLabel>First name</FormLabel>
                     <FormControl>
-                      <Input className="" placeholder="mail" type="text" {...field} />
+                      <Input className="" placeholder="First name" type="text" {...field} />
                     </FormControl>
 
                     <FormMessage />
@@ -99,12 +106,12 @@ export default function Appearance() {
               ></FormField>
               <FormField
                 control={form.control}
-                name="mail"
+                name="last_name"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel>mail</FormLabel>
+                    <FormLabel>Last name</FormLabel>
                     <FormControl>
-                      <Input placeholder="mail" type="text" {...field} />
+                      <Input placeholder="Last name" type="text" {...field} />
                     </FormControl>
 
                     <FormMessage />
@@ -117,7 +124,7 @@ export default function Appearance() {
               name="mail"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>mail</FormLabel>
+                  <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input placeholder="mail" type="text" {...field} />
                   </FormControl>
@@ -125,21 +132,9 @@ export default function Appearance() {
                 </FormItem>
               )}
             ></FormField>
-            <FormField
-              control={form.control}
-              name="mail"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>mail</FormLabel>
-                  <FormControl>
-                    <Input placeholder="mail" type="text" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            ></FormField>
+            
           </Form>
-          <Button>Save changes</Button>
+          <Button className="mt-5">Save changes</Button>
         </div>
       </div>
   );

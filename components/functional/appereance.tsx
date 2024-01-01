@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/form";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
-import "../../../../app/globals.css";
+import "@/app/globals.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -35,7 +35,6 @@ import {
 import { hasCookie } from "cookies-next";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import RootLayout from "../layout";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toggleTheme, initializeTheme } from "@/lib/theme";
@@ -68,12 +67,10 @@ export default function Appearance() {
   }
   return (
       <div className="flex flex-1 flex-col min-h-screen gap-2 ">
-        <h1 className="text-2xl font-bold">Appearance</h1>
         <p>
           Customize the appearance of the app. Automatically switch between day
           and night themes.
         </p>
-        <Separator></Separator>
         <div className="space-y-5">
           <div>
             <h1 className="text-md font-bold">Theme</h1>

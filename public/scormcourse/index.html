@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <iframe id="ifr" src="" frameborder="0"></iframe>
     <style>
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
 
-        body {
-            overflow: hidden;
-        }
+      body {
+        overflow: hidden;
+      }
 
-        iframe {
-            width: 100vw;
-            height: 100vh;
-        }
+      iframe {
+        width: 100vw;
+        height: 100vh;
+      }
     </style>
 
-
     <script>
-        /*
+      /*
       'CommitData',
       'ConcedeControl', // Gives control back to the LMS
       'CreateResponseIdentifier', // Create question response
@@ -47,69 +45,85 @@
       'SetScore', // Report Users Score to the LMS (for Pass and fail)
       'WriteToDebug',
         */
-        const urlParams = new URLSearchParams(window.location.search);
-        const scormFilename = urlParams.get('scorm_filename');
+      const urlParams = new URLSearchParams(window.location.search);
+      const scormFilename = urlParams.get("scorm_filename");
 
-        let iframe = document.querySelector("iframe");
-        
-      iframe.setAttribute("src", "https://lms-next.work.gd/ets-site-backend/storage/app/public/courses/"+scormFilename+"/ ");
-    
+      let iframe = document.querySelector("iframe");
 
+      iframe.setAttribute(
+        "src",
+        "https://lms-next.work.gd/ets-site-backend/storage/app/public/courses/" +
+          scormFilename +
+          "/ "
+      );
 
-        let setup = async () => {
-            window.save = () => {
-                alert(111)
+      window.set = () => {
+        console.log("FUNKCIJAAAAAAAAAAA");
+      };
+      let setup = async () => {
+        window.addEventListener(
+          "message",
+          function (event) {
+            // Provera odakle dolazi poruka
+            if (event.source !== window) {
+              return;
             }
-            window.SetDataChunk = (a) => {
-                let b = JSON.parse(a).d;
 
-                fetch("../api/set-value", {
-                    method: "POST",
-                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-                    body: JSON.stringify({
-                        scorm_filename: scormFilename,
-                        data: JSON.parse(a).d
-                    }),
-                })
-                    .then((response, error) => {
-                        console.log(response);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    })
-            };
+            // Provera sadržaja poruke
+            if (event.data === "SCORM.data.save failed: API connection is inactive.") {
+              console.log("Funkcija n.SCORM.data.get je pozvana u iframe-u!");
+              // Dodajte svoju logiku kao odgovor na poziv funkcije
+            }
+          },
+          false
+        );
 
+        window.set = () => {
+          console.log("FUNKCIJAAAAAAAAAAA");
+        };
+        window.SetDataChunk = (a) => {
+          let b = JSON.parse(a).d;
 
-            window.GetDataChunk = () => {
-                let result = null;
+          fetch("../api/set-value", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              scorm_filename: scormFilename,
+              data: JSON.parse(a).d,
+            }),
+          })
+            .then((response, error) => {
+              console.log(response);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        };
 
-                const xhttp = new XMLHttpRequest();
-                xhttp.onload = function () {
-                    let data = JSON.parse(this.responseText)
-                    result = JSON.stringify({ d: data[0].data })
-                }
-                xhttp.open("GET", "../api/get-value/" + scormFilename, false);
-                xhttp.setRequestHeader("Authorization", `Bearer ${token}`)
-                xhttp.send();
+        window.GetDataChunk = () => {
+          let result = null;
 
-                return result
-            };
+          const xhttp = new XMLHttpRequest();
+          xhttp.onload = function () {
+            let data = JSON.parse(this.responseText);
+            result = JSON.stringify({ d: data[0].data });
+          };
+          xhttp.open("GET", "../api/get-value/" + scormFilename, false);
+          xhttp.setRequestHeader("Authorization", `Bearer ${token}`);
+          xhttp.send();
 
+          return result;
+        };
 
-            window.ConcedeControl = window.history.back;
+        window.ConcedeControl = window.history.back;
 
+        console.log(document.getElementById("ifr").contentDocument.title);
+      };
 
-            console.log(document.getElementById("ifr").contentDocument.title);
-
-        }
-
-
-
-        setup();
-
-
+      setup();
     </script>
-</body>
-
+  </body>
 </html>
-

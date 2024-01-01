@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { AccordionCourse } from "@/components/accordionCourse";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import "../../../../app/globals.css";
 import Header from "@/components/header";
@@ -30,6 +30,7 @@ const CoursePage = ({ params }: { params: { id: string } }) => {
   const [lesson, setlesson] = useState();
   const [mat, setmat] = useState();
   const [home, sethome] = useState();
+  const router = useRouter()
   const Fetch = async () => {
     await axios
       .get(Config.apiUrl + `/course/${params.id}`)
@@ -62,7 +63,7 @@ const CoursePage = ({ params }: { params: { id: string } }) => {
                 alt=""
                 width={280}
                 height={400}
-                className="rounded-sm w-full max-w-[70%] max-sm:w-full"
+                className="rounded-sm w-full max-w-[70%] max-sm:min-w-full"
               ></img>
             ) : null}
             <div className="flex flex-col p-5 gap-5">
@@ -80,14 +81,7 @@ const CoursePage = ({ params }: { params: { id: string } }) => {
                 {course ? course[0].course_type : null}
               </span>
               {course ? (
-                <Link
-                  href={
-                    "/scormcourse/index.html?scorm_filename=" +
-                    course[0].scorm_filename
-                  }
-                >
-                  <Button variant="Login">Start course</Button>
-                </Link>
+                  <Button variant="Login" onClick={() => router.push(`/course/${params.id}/${course[0].scorm_filename}`)}>Start course</Button>
               ) : null}
             </div>
           </Card>

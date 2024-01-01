@@ -18,84 +18,48 @@ import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
+import { GearIcon, FileIcon, GlobeIcon, DashboardIcon } from "@radix-ui/react-icons";
 export default function SideBar() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const Pages = [
+    {
+      name: "Dashboard",
+      route: "dashboard",
+      icon: <DashboardIcon className="mr-2"></DashboardIcon>,
+    },
+    {
+      name: "Discover",
+      route: "discover",
+      icon: <GlobeIcon className="mr-2"></GlobeIcon>,
+    },
+    {
+      name: "Settings",
+      route: "settings",
+      icon: <GearIcon className="mr-2"></GearIcon>,
+    },
+    {
+      name: "My files",
+      route: "my-files",
+      icon: <FileIcon className="mr-2"></FileIcon>,
+    },
+  ];
   return (
     <>
       <div className="hidden flex flex-col gap-5 w-[200px] border-r file:border-0 border-r-border p-5 h-screen relative top-0 self-start md:hidden lg:flex">
-        <Button variant="default">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="mr-2 h-4 w-4"
-          >
-            <rect width="7" height="7" x="3" y="3" rx="1" />
-            <rect width="7" height="7" x="14" y="3" rx="1" />
-            <rect width="7" height="7" x="14" y="14" rx="1" />
-            <rect width="7" height="7" x="3" y="14" rx="1" />
-          </svg>
-          Dashboard
-        </Button>
-        <Button variant="sideBar">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="mr-2 h-4 w-4"
-          >
-            <rect width="7" height="7" x="3" y="3" rx="1" />
-            <rect width="7" height="7" x="14" y="3" rx="1" />
-            <rect width="7" height="7" x="14" y="14" rx="1" />
-            <rect width="7" height="7" x="3" y="14" rx="1" />
-          </svg>
-          Discover
-        </Button>
-        <Link href="/settings">
-          <Button variant="sideBar">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="mr-2 h-4 w-4"
+        {Pages.map((e, index) => {
+          return (
+            <Button
+              variant={pathname.includes(e.route)?"default": "sideBarHover"}
+              className="space-x-1"
+              onClick={() => router.push("/" + e.route)}
             >
-              <rect width="7" height="7" x="3" y="3" rx="1" />
-              <rect width="7" height="7" x="14" y="3" rx="1" />
-              <rect width="7" height="7" x="14" y="14" rx="1" />
-              <rect width="7" height="7" x="3" y="14" rx="1" />
-            </svg>
-            Settings
-          </Button>
-        </Link>
-        <Button variant="sideBar">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="mr-2 h-4 w-4"
-          >
-            <rect width="7" height="7" x="3" y="3" rx="1" />
-            <rect width="7" height="7" x="14" y="3" rx="1" />
-            <rect width="7" height="7" x="14" y="14" rx="1" />
-            <rect width="7" height="7" x="3" y="14" rx="1" />
-          </svg>
-          My files
-        </Button>
+              {e.icon}
+              {e.name}
+            </Button>
+          );
+        })}
       </div>
     </>
   );
