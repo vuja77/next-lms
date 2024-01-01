@@ -54,6 +54,7 @@ export default function SideBar() {
               variant={pathname.includes(e.route)?"default": "sideBarHover"}
               className="space-x-1"
               onClick={() => router.push("/" + e.route)}
+              key={index}
             >
               {e.icon}
               {e.name}
