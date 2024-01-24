@@ -20,7 +20,7 @@ import "@/app/globals.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import Chart from "@/components/chart";
+import Chart from "@/components/functional/chart";
 import { Calendar } from "@/components/ui/calendar";
 import { Separator } from "@/components/ui/separator";
 import { Metadata } from "next";

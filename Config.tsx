@@ -1,4 +1,4 @@
 export const Config = {
-    apiUrl: "https://lms-next.work.gd/api/index.php",
-    storageUrl: "https://lms-next.work.gd/ets-site-backend/storage/app/public"
+    apiUrl: "http://api-lms.work.gd",
+    storageUrl: "http://api-lms.work.gd/storage"
 } as const;

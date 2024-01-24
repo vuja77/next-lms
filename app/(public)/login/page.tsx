@@ -1,115 +1,48 @@
-"use client"
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { useToast } from "@/components/ui/use-toast";
-import "../../../app/globals.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Config } from "../../../Config";
-import { setCookie, hasCookie } from "cookies-next";
-const FormSchema = z.object({
-  mail: z.string().min(2, {
-    message: "Username must be at least 6 characters.",
-  }),
-  password: z.string().min(2, {
-    message: "Password must be at least 6 characters.",
-  }),
-});
-import { useRouter } from "next/navigation";
+
 import Link from "next/link";
-import RootLayout from "@/app/layout";
-import { initializeTheme } from "@/lib/theme";
-
-export default function Login() {
-  const router = useRouter();
-  if (hasCookie("token")) {
-    router.push("/dashboard");
-  }
-  const [Error, setError] = useState<string>();
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      mail: "",
-      password: "",
-    },
-  });
-
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    LoginRequest(data);
-  }
-  const LoginRequest = async (data: Object) => {
-    try {
-      const res = await axios.post<{ success: { token: string } }>(
-        Config.apiUrl + "/login",
-        data
-      );
-      type Succes = {
-        token: string;
-      };
-      setCookie("token", res.data.success.token);
-      router.push("/dashboard");
-    } catch (err: any) {
-      if (err.response.data.error === "Unauthorized") {
-        setError("email or password is not valid");
-      }
-    }
-  };
-  useEffect(() => {
-    initializeTheme()
-  })
+import { loginAction } from "@/app/actions/auth";
+import { Label } from "@/components/ui/label";
+import Middleware from "@/middelware";
+import { useContext } from "react";
+import {DataContext} from "@/lib/authProvider";
+const Login = () => {
+  //@ts-ignore
+  const { data } = useContext(DataContext);
+  console.log(data)
   return (
     <div className="flex min-h-screen items-center justify-center p-24 flex-col">
       <div className="p-10 rounded-lg gap-5 flex-col flex  w-[400px] border file:border-0 border-border">
         <h1 className="font-bold text-2xl self-center">Welcome back!</h1>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="gap-2 flex flex-col"
-          >
-            <FormField
-              control={form.control}
-              name="mail"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Mail</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Mail" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+        <form action={loginAction} className="space-y-5">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-border" />
+            </div>
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="m@example.com"
             />
-            <FormField
-              control={form.control}
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="password">Password</Label>
+            <Input
+              id="password"
               name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Password" type="password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              type="password"
+              placeholder="*******"
             />
-            <p className="text-red-800 text-sm">{Error}</p>
-            <Button type="submit" className="mt-2.5" variant="Login">
-              Login
-            </Button>
-          </form>
-        </Form>
+          </div>
+          <Button type="submit" className="w-full" variant="Login">
+            login
+          </Button>
+        </form>
       </div>
       <p>
         You dont have an account?
@@ -120,3 +53,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;
