@@ -32,7 +32,7 @@ export async function updateCourse(formData: FormData, id:any) {
   console.log(id)
   console.log(formData)
   const res = await axios.put(
-    "http://127.0.0.1:8000/course/"+id.id,
+    "http://api-lms.work.gd/course/"+id.id,
     {
       name: formData.get("name"),
       description: formData.get("description"),
@@ -53,7 +53,7 @@ export async function uploadScorm(formData: FormData) {
   "use server";
   try {
     const res = await axios.post(
-      "http://127.0.0.1:8000/upload-scorm-course",
+      "http://api-lms.work.gd/upload-scorm-course",
       formData,
       {
         headers: {},
@@ -71,7 +71,7 @@ export async function fetchProfessorsCourse() {
   const token = cookies().get("token");
 
   try {
-    const res = await axios.get("http://127.0.0.1:8000/getProfessorCourse", {
+    const res = await axios.get("https://api-lms.work.gd/getProfessorCourse", {
       headers: {
         Authorization: "Bearer " + token?.value,
       },
