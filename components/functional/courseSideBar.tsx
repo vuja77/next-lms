@@ -65,7 +65,7 @@ export default function  CourseSideBar(id: { id: string }) {
       <div className="flex-col gap-5 w-[200px] border-r file:border-0 border-r-border p-5 h-screen relative top-0 self-start md:hidden lg:flex">
         {ProfessorPages.map((e, index) => {
           return (
-            <Link href={e.route}>
+            <Link href={e.route} key={index}>
               <Button
                 variant={
                   pathname.endsWith(e.route) ? "default" : "sideBarHover"

@@ -6,11 +6,8 @@ import { loginAction } from "@/app/actions/auth";
 import { Label } from "@/components/ui/label";
 import Middleware from "@/middelware";
 import { useContext } from "react";
-import {DataContext} from "@/lib/authProvider";
 const Login = () => {
   //@ts-ignore
-  const { data } = useContext(DataContext);
-  console.log(data)
   return (
     <div className="flex min-h-screen items-center justify-center p-24 flex-col">
       <div className="p-10 rounded-lg gap-5 flex-col flex  w-[400px] border file:border-0 border-border">
