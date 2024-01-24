@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 export async function registerAction(formData: FormData) {
   "use server";
   
-    const res = await axios.post("https://api-lms.work.gd/register", {
+    const res = await axios.post("https://api-lms.work.gd/lms/register", {
       first_name: formData.get("first_name"),
       last_name: formData.get("last_name"),
       mail: formData.get("email"),
@@ -39,7 +39,7 @@ export async function detailsAction() {
   const token = cookies().get("token");
 
   ("use server");
-  const res = await axios.get("https://api-lms.work.gd/details", {
+  const res = await axios.get("https://api-lms.work.gd/lms/details", {
     headers: {
       Authorization: "Bearer " + token?.value,
     },

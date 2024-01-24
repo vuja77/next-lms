@@ -71,7 +71,7 @@ export async function fetchProfessorsCourse() {
   const token = cookies().get("token");
 
   try {
-    const res = await axios.get("https://api-lms.work.gd/getProfessorCourse", {
+    const res = await axios.get("https://api-lms.work.gd/lms/getProfessorCourse", {
       headers: {
         Authorization: "Bearer " + token?.value,
       },

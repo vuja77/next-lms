@@ -8,7 +8,7 @@ export async function getCert() {
   "use server";
   const token = cookies().get("token");
   try {
-    const res = await axios.get("https://api-lms.work.gd/generateCert", {
+    const res = await axios.get("https://api-lms.work.gd/lms/generateCert", {
       headers: {
         'Authorization': "Bearer " + token?.value,
       },

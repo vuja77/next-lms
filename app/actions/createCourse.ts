@@ -8,7 +8,7 @@ export async function createCourse(formData: FormData) {
   "use server";
   const token = cookies().get("token");
   try {
-    const res = await axios.post("https://api-lms.work.gd/course", {
+    const res = await axios.post("https://api-lms.work.gd/lms/course", {
       name: formData.get("name"),
       thumbnail: "default.png",
       course_type_id: "1"
