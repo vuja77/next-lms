@@ -21,6 +21,7 @@ import { updateCourse } from "@/app/actions/courseActions";
 export default async function EditCourse(id: any) {
   async function update(formData: FormData) {
     "use server";
+    console.log("aaa")
     updateCourse(formData, id);
   }
   return (

@@ -3,6 +3,7 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 import { RedirectType } from "next/dist/client/components/redirect";
 import { cookies } from "next/headers";
+import { tr } from "date-fns/locale";
 
 export async function fetchCourses() {
   "use server";
@@ -18,6 +19,8 @@ export async function fetchCourses() {
 export async function fetchCourse(id: string) {
   "use server";
   const token = cookies().get("token");
+  try {
+
   const res = await axios.get("https://api-lms.work.gd/lms/course/" + id, {
     headers: {
       Authorization: "Bearer " + token?.value,
@@ -26,6 +29,11 @@ export async function fetchCourse(id: string) {
   console.log(res)
   return res.data;
 }
+catch (err) {
+  console.log(err)
+}
+
+}
 export async function updateCourse(formData: FormData, id:any) {
   "use server";
   const token = cookies().get("token");
@@ -33,12 +41,7 @@ export async function updateCourse(formData: FormData, id:any) {
   console.log(formData)
   const res = await axios.put(
     "https://api-lms.work.gd/lms/course/"+id.id,
-    {
-      name: formData.get("name"),
-      description: formData.get("description"),
-      thumbnail: formData.get("thumbnail"),
-      course_type_id: formData.get("category_id"),
-    },
+    formData,
     {
       headers: {
         Authorization: "Bearer " + token?.value,

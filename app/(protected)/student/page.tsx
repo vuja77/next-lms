@@ -117,7 +117,7 @@ const Dashboard = async () => {
                       >
                         <img
                           src={
-                            "http://127.0.0.1:8000/uploads/" +
+                            "https://api-lms.work.gd/lms/storage/" +
                             e.thumbnail
                           }
                           alt=""

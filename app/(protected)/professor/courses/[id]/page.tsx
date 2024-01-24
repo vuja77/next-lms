@@ -60,7 +60,7 @@ const CoursePage = async ({ params }: { params: { id: string } }) => {
               {data ? (
                 <img
                   src={
-                    "http://127.0.0.1:8000/uploads//" + data.course[0].thumbnail
+                    "https://api-lms.work.gd/lms/storage" + data.course[0].thumbnail
                   }
                   alt=""
                   width={280}
@@ -97,13 +97,13 @@ const CoursePage = async ({ params }: { params: { id: string } }) => {
               </TabsList>
               <TabsContent value="lesson">
                 <AccordionCourse
-                  data={data.lessons}
+                  data={data && data.lessons}
                   mat={null}
                 ></AccordionCourse>
               </TabsContent>
               <TabsContent value="homework">
                 <AccordionCourse
-                  data={data.lessons}
+                  data={data && data.lessons}
                   mat={null}
                 ></AccordionCourse>
               </TabsContent>
