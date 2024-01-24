@@ -7,7 +7,7 @@ import { cookies } from "next/headers";
 export async function fetchCourses() {
   "use server";
   const token = cookies().get("token");
-  const res = await axios.get("http://127.0.0.1:8000/course", {
+  const res = await axios.get("https://api-lms.work.gd/lms/course", {
     headers: {
       Authorization: "Bearer " + token?.value,
     },
@@ -18,7 +18,7 @@ export async function fetchCourses() {
 export async function fetchCourse(id: string) {
   "use server";
   const token = cookies().get("token");
-  const res = await axios.get("http://127.0.0.1:8000/course/" + id, {
+  const res = await axios.get("https://api-lms.work.gd/lms/course/" + id, {
     headers: {
       Authorization: "Bearer " + token?.value,
     },
@@ -32,7 +32,7 @@ export async function updateCourse(formData: FormData, id:any) {
   console.log(id)
   console.log(formData)
   const res = await axios.put(
-    "http://api-lms.work.gd/course/"+id.id,
+    "https://api-lms.work.gd/lms/course/"+id.id,
     {
       name: formData.get("name"),
       description: formData.get("description"),
@@ -53,7 +53,7 @@ export async function uploadScorm(formData: FormData) {
   "use server";
   try {
     const res = await axios.post(
-      "http://api-lms.work.gd/upload-scorm-course",
+      "https://api-lms.work.gd/lms/upload-scorm-course",
       formData,
       {
         headers: {},
