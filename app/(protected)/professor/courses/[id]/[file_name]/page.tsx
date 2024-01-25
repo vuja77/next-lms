@@ -19,42 +19,42 @@ const MyPage: React.FC = () => {
     if (iframe) {
       iframe.setAttribute(
         "src",
-        `/scrm/scormcontent/index.html`
+        `https://api-lms.work.gd/lms/storage/courses/${scormFilename}/index.html`
       );
     }
     // @ts-ignore
-    let setup = async () => {
-      // @ts-ignore
-      window.SetDataChunk = (a) => {
-        let b = JSON.parse(a).d;
-        console.log(a);
-        console.log("alo");
-      };
-      // @ts-ignore
+    // let setup = async () => {
+    //   // @ts-ignore
+    //   window.SetDataChunk = (a) => {
+    //     let b = JSON.parse(a).d;
+    //     console.log(a);
+    //     console.log("alo");
+    //   };
+    //   // @ts-ignore
 
-      window.SetReachedEnd = () => {
-        fetch("http://127.0.0.1:8000/send-mail", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`, // Dodajte token u zaglavlje za autorizaciju
-          },
-        })
-      };
-      // @ts-ignore
-      window.GetDataChunk = () => {
-        let result = null;
-        console.log("aa");
+    //   window.SetReachedEnd = () => {
+    //     fetch("http://127.0.0.1:8000/send-mail", {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         'Authorization': `Bearer ${token}`, // Dodajte token u zaglavlje za autorizaciju
+    //       },
+    //     })
+    //   };
+    //   // @ts-ignore
+    //   window.GetDataChunk = () => {
+    //     let result = null;
+    //     console.log("aa");
 
-        return result;
-      };
-      // @ts-ignore
-      window.ConcedeControl = window.history.back;
-      // @ts-ignore
-      console.log(document.getElementById("ifr").contentDocument.title);
-    };
+    //     return result;
+    //   };
+    //   // @ts-ignore
+    //   window.ConcedeControl = window.history.back;
+    //   // @ts-ignore
+    //   console.log(document.getElementById("ifr").contentDocument.title);
+    // };
 
-    setup();
+    // setup();
   }, []);
 
   return (

@@ -60,7 +60,7 @@ const CoursePage = async ({ params }: { params: { id: string } }) => {
               {data ? (
                 <img
                   src={
-                    "https://api-lms.work.gd/lms/storage" + data.course[0].thumbnail
+                    "https://api-lms.work.gd/lms/storage/" + data.course[0].thumbnail
                   }
                   alt=""
                   width={280}
