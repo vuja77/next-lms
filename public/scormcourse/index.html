@@ -30,17 +30,9 @@
     </style>
 
     <script>
-      window.addEventListener('message', function(event) {
-  // Check the origin of the sender
-  if (event.origin === 'http://127.0.0.1:8000') {
-    // Handle the message
-    console.log('Received message: ' + event.data);
-  }
-});
+
 
 // In the other frame (http://otherdomain.com)
-var targetWindow = window.frames[0];  // Replace with the reference to your frame
-targetWindow.postMessage('Hello from the other side!', 'http://127.0.0.1:8000');
       /*
       'CommitData',
       'ConcedeControl', // Gives control back to the LMS
@@ -68,52 +60,10 @@ targetWindow.postMessage('Hello from the other side!', 'http://127.0.0.1:8000');
 
       iframe.setAttribute(
         "src",
-        `http://127.0.0.1:8000/storage/courses/${scormFilename}/scormcontent/index.html`
+        `https://api-lms.work.gd/lms/storage/courses/${scormFilename}/index.html`
       );
 
-      window.set = () => {
-        console.log("FUNKCIJAAAAAAAAAAA");
-      };
-      let setup = async () => {
-        window.addEventListener(
-          "message",
-          function (event) {
-            // Provera odakle dolazi poruka
-            if (event.source !== window) {
-              return;
-            }
-
-            // Provera sadržaja poruke
-            if (event.data === "SCORM.data.save failed: API connection is inactive.") {
-              console.log("Funkcija n.SCORM.data.get je pozvana u iframe-u!");
-              // Dodajte svoju logiku kao odgovor na poziv funkcije
-            }
-          },
-          false
-        );
-
-        window.set = () => {
-          console.log("FUNKCIJAAAAAAAAAAA");
-        };
-        window.SetDataChunk = (a) => {
-          let b = JSON.parse(a).d;
-          console.log(a)
-          
-        };
-
-        window.GetDataChunk = () => {
-          let result = null;
-
-          console.log("alo")
-
-          return result;
-        };
-
-        window.ConcedeControl = window.history.back;
-
-      };
-
-      setup();
+      
     </script>
   </body>
 </html>

@@ -1,25 +1,29 @@
 "use client";
 import { useEffect } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
+import { useRouter} from "next/router";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import Header from "@/components/functional/header";
 import CourseSideBar from "@/components/functional/courseSideBar";
 import { getCookie } from "cookies-next";
-const MyPage: React.FC = () => {
-  const router = useRouter();
+const MyPage = ({ params }: { params: { id: string } }) => {
   const scormFilename = useParams();
   const token = getCookie("token")
   useEffect(() => {
+    
     const urlParams = new URLSearchParams(window.location.search);
-    console.log(scormFilename);
+    console.log(params);
+    
     // Dynamically set the iframe source
     const iframe = document.querySelector("iframe");
     if (iframe) {
+      //@ts-ignore
       iframe.setAttribute(
         "src",
-        `https://api-lms.work.gd/lms/storage/courses/${scormFilename}/index.html`
+      //@ts-ignore
+        `https://api-lms.work.gd/lms/storage/courses/${params.file_name}/index.html`
       );
     }
     // @ts-ignore
@@ -62,12 +66,11 @@ const MyPage: React.FC = () => {
       <div className="bg-background min-h-screen">
 
         <div className="bg-background flex ">
-          <CourseSideBar id="2"></CourseSideBar>
           <iframe
             id="ifr"
             src=""
             frameBorder="0"
-            className="w-screen border-border"
+            className="w-screen h-screen border-border"
           ></iframe>
         </div>
       </div>

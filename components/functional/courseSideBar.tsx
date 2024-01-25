@@ -36,7 +36,7 @@ export default function  CourseSideBar(id: { id: string }) {
   const ProfessorPages = [
     {
       name: "Course Preview",
-      route: "/ professor/courses/" + id.id,
+      route: "/professor/courses/" + id.id,
       icon: <DashboardIcon className="mr-2"></DashboardIcon>,
     },
     {

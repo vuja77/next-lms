@@ -79,7 +79,7 @@ const Scorm = async ({ params }: { params: { id: string } }) => {
                     <TableRow>
                       <TableCell className="font-medium">{data.course[0].name}</TableCell>
                       <TableCell>{data.course[0].scorm_filename}</TableCell>
-                      <TableCell><Link href={data.course[0].scorm_filename}><Button>Open</Button></Link></TableCell>
+                      <TableCell><Link href={data.course[0].scorm_filename+"?filename="+data.course[0].scorm_filename}><Button>Open</Button></Link></TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
