@@ -89,7 +89,7 @@ const CoursePage = async ({ params }: { params: { id: string } }) => {
                 {
 
                 }
-                <Link href={data.course[0].scorm_filename+"?filename="+data.course[0].scorm_filename}>
+                <Link href={params.id+"/"+data.course[0].scorm_filename+"?filename="+data.course[0].scorm_filename}>
                   <Button className="justify-center">Start course</Button>
                 </Link>
               </div>
