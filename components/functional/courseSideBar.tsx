@@ -39,11 +39,7 @@ export default function  CourseSideBar(id: { id: string }) {
       route: "/professor/courses/" + id.id,
       icon: <DashboardIcon className="mr-2"></DashboardIcon>,
     },
-    {
-      name: "Statistic",
-      route: "/discover",
-      icon: <GlobeIcon className="mr-2"></GlobeIcon>,
-    },
+    
     {
       name: "Scrom ",
       route: "/professor/courses/" + id.id + "/scrom",

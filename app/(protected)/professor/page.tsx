@@ -100,7 +100,7 @@ const ProfesorDashboard = async () => {
           <div className="flex gap-10 flex-wrap">
             <Card className="space-y-0 gap-0 min-w-[200px]">
               <CardHeader className="font-bold">Total courses</CardHeader>
-              <CardContent className=" font-extrabold">32</CardContent>
+              <CardContent className=" font-extrabold">7</CardContent>
               <CardDescription className="px-5 pb-5">
                 number of your courses
               </CardDescription>
@@ -109,7 +109,7 @@ const ProfesorDashboard = async () => {
               <CardHeader className="font-bold min-w-[200px]">
                 Total courses
               </CardHeader>
-              <CardContent className="text-xl font-extrabold">32</CardContent>
+              <CardContent className="text-xl font-extrabold">7</CardContent>
               <CardDescription className="px-5 pb-5">
                 number of your courses
               </CardDescription>
@@ -118,7 +118,7 @@ const ProfesorDashboard = async () => {
               <CardHeader className="font-bold min-w-[200px]">
                 Total courses
               </CardHeader>
-              <CardContent className="text-xl font-extrabold">32</CardContent>
+              <CardContent className="text-xl font-extrabold">7</CardContent>
               <CardDescription className="px-5 pb-5">
                 number of your courses
               </CardDescription>
