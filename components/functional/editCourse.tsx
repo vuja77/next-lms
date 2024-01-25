@@ -41,7 +41,7 @@ export default async function EditCourse(id: any) {
         </DialogHeader>
         <div>
           <form
-            action={update}
+            action={await update}
             className="flex flex-col items-center space-y-5"
             encType="multipart/form-data"
           >
@@ -57,7 +57,7 @@ export default async function EditCourse(id: any) {
                 <SelectItem value="3">System</SelectItem>
               </SelectContent>
             </Select>
-            <Input name="thumbnail" type="file"></Input>
+            <Input name="file" type="file"></Input>
             <Button className="w-full justify-center">Edit course</Button>
           </form>
         </div>

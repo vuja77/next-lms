@@ -147,7 +147,7 @@ const ProfesorDashboard = async () => {
                           >
                             <img
                               src={
-                                "https://api-lms.work.gd/lms/storage" + e.thumbnail
+                                "https://api-lms.work.gd/lms/storage/" + e.thumbnail
                               }
                               alt=""
                               width={280}

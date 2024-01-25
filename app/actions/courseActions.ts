@@ -38,22 +38,25 @@ export async function updateCourse(formData: FormData, id:any) {
   "use server";
   const token = cookies().get("token");
   console.log(id)
-  console.log(formData)
-  const res = await axios.put(
-    "https://api-lms.work.gd/lms/course/"+id.id,
-    formData,
-    {
-      headers: {
-        Authorization: "Bearer " + token?.value,
-      },
-    }
+  console.log(formData.get("file"))
+   const res = await axios.put(
+     "https://api-lms.work.gd/lms/course/"+id.id,
+     {
+     file: formData.get("file"),
+
+     },
+     {
+       headers: {
+         Authorization: "Bearer " + token?.value,
+       },
+     }
   );
-    console.log(res.data)
-  return res.data;
 }
 
 export async function uploadScorm(formData: FormData) {
   "use server";
+  console.log(formData)
+
   try {
     const res = await axios.post(
       "https://api-lms.work.gd/lms/upload-scorm-course",
