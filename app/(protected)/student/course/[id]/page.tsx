@@ -60,7 +60,7 @@ const CoursePage = async ({ params }: { params: { id: string } }) => {
               {data ? (
                 <img
                   src={
-                    "http://127.0.0.1:8000/uploads/" + data.course[0].thumbnail
+                    "https://api-lms.work.gd/lms/storage/" + data.course[0].thumbnail
                   }
                   alt=""
                   width={280}
@@ -89,7 +89,7 @@ const CoursePage = async ({ params }: { params: { id: string } }) => {
                 {
 
                 }
-                <Link href={params.id +"/" +data.course[0].scorm_filename}>
+                <Link href={data.course[0].scorm_filename+"?filename="+data.course[0].scorm_filename}>
                   <Button className="justify-center">Start course</Button>
                 </Link>
               </div>
